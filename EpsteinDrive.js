@@ -42,7 +42,6 @@ function DataOps() { //this is the one who fills data.
     Lname = Jsn.data.guests[0].contact.last_name;
     img.src = './assets/propics/' + id + '.jpg';
     Pname.innerHTML = Fname + ' ' + Lname;
-    //console.log(Pname.innerHTML);
     console.log(Fname);
     console.log(Lname);
     console.log(id);
@@ -52,15 +51,17 @@ function DataOps() { //this is the one who fills data.
 
 }
 
-function totalLoop() {
+function totalLoop() { //main loop functions recursive
+
+    //T-0
     console.log(IDList);
     fetcher();
 
-    setTimeout(function() {
+    setTimeout(function() { //Runs At T+12 Sec
         DataOps();
     }, 12 * 1000);
 
-    setTimeout(function() {
+    setTimeout(function() { //Runs At T+1 Sec
         i++;
 
         console.log(i);
