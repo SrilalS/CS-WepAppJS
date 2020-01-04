@@ -67,7 +67,7 @@ function totalLoop() {
         i++;
         console.log(i);
         IDList.push(i);
-        $('#div1').slideUp(0);
+        $('#div1').slideUp(1);
         $('#div2').addClass('animX');
     }, 11 * 1000);
 
