@@ -1,13 +1,30 @@
-setTimeout(function() {
-    console.log("Event 1")
-    $('#div1').addClass('animX');
-}, 1 * 1000);
+function totalLoop() {
+    setTimeout(function() {
+        console.log("Event 1")
+        $('#div1').show();
+        $('#div1').addClass('animX');
+        $('#div2').removeClass('animX');
+    }, 1 * 1000);
 
-setTimeout(function() {
-    console.log("Event 2")
-    $('#div1').hide();
-    $('#div2').addClass('animX');
-}, 3 * 1000);
+    setTimeout(function() {
+        console.log("Event 2")
+        $('#div1').hide();
+        $('#div2').addClass('animX');
+    }, 11 * 1000);
+
+    setTimeout(function() {
+        console.log("Event 3")
+        $('#div1').show();
+        $('#div1').addClass('animX');
+        $('#div2').removeClass('animX');
+    }, 21 * 1000);
+
+    setTimeout(function() {
+        totalLoop();
+    }, 25 * 1000)
+}
+
+totalLoop();
 
 
 
