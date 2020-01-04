@@ -6,7 +6,6 @@ var i = 0;
 var Pname = document.querySelector("#pname");
 var cslvl = document.querySelector("#cslvl");
 var img = document.querySelector("#img");
-console.log(img.innerHTML);
 var requestOptions = {
     method: 'GET',
     redirect: 'follow'
@@ -45,6 +44,7 @@ function DataOps() {
     console.log(Fname);
     console.log(Lname);
     console.log(id);
+    IDList.push(id);
 }
 
 function totalLoop() {
@@ -53,12 +53,11 @@ function totalLoop() {
 
     setTimeout(function() {
         DataOps();
-    }, 5 * 1000);
+    }, 12 * 1000);
 
     setTimeout(function() {
         i++;
         console.log(i);
-        IDList.push(i);
         $('#div1').slideDown(0);
         $('#div1').addClass('animX');
         $('#div2').removeClass('animX');
