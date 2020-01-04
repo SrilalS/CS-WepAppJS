@@ -45,11 +45,14 @@ function DataOps() {
     console.log(Fname);
     console.log(Lname);
     console.log(id);
-    IDList.push(id);
+    if (!IDList.includes(id)) {
+        IDList.push(id);
+    };
+
 }
 
 function totalLoop() {
-
+    console.log(IDList);
     fetcher();
 
     setTimeout(function() {
@@ -58,13 +61,15 @@ function totalLoop() {
 
     setTimeout(function() {
         i++;
+
         console.log(i);
-        if (IDList.includes(id) == true) {
-
+        if (IDList.includes(id)) {
+            $('#div1').slideUp(0);
+            $('#div2').addClass('animX');
+        } else {
+            $('#div1').slideDown(0);
+            $('#div1').addClass('animX');
         };
-
-        $('#div1').slideDown(0);
-        $('#div1').addClass('animX');
         $('#div2').removeClass('animX');
     }, 1);
 
@@ -78,14 +83,19 @@ function totalLoop() {
     setTimeout(function() {
         i++;
         console.log(i);
-        $('#div1').show();
-        $('#div1').addClass('animX');
+        if (IDList.includes(id)) {
+            $('#div1').slideUp(0);
+            $('#div2').addClass('animX');
+        } else {
+            $('#div1').slideDown(0);
+            $('#div1').addClass('animX');
+        };
         $('#div2').removeClass('animX');
     }, 21 * 1000);
 
     setTimeout(function() {
         console.log(IDList);
-        if (IDList.includes(id) == true) {
+        if (IDList.includes(id)) {
             console.log('ID is Here!');
         }
         totalLoop();
