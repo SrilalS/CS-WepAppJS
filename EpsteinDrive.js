@@ -1,11 +1,13 @@
 setTimeout(function() {
     console.log("Event 1")
     $('#div1').addClass('animX');
-}, 2 * 1000);
+}, 1 * 1000);
 
 setTimeout(function() {
     console.log("Event 2")
-}, 4 * 1000);
+    $('#div1').hide();
+    $('#div2').addClass('animX');
+}, 3 * 1000);
 
 
 
