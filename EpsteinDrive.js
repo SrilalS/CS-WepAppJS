@@ -59,6 +59,10 @@ function totalLoop() {
     setTimeout(function() {
         i++;
         console.log(i);
+        if (IDList.includes(id) == true) {
+
+        };
+
         $('#div1').slideDown(0);
         $('#div1').addClass('animX');
         $('#div2').removeClass('animX');
