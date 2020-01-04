@@ -52,6 +52,9 @@ function DataOps() { //this is the one who fills data.
 }
 
 function totalLoop() { //main loop functions recursive
+    //
+    //NOTE : DO NOT BREAK THE TIME SYNC OR THIS WILL GO NUTS
+    //
 
     //T-0
     console.log(IDList);
@@ -65,7 +68,7 @@ function totalLoop() { //main loop functions recursive
         i++;
 
         console.log(i);
-        if (IDList.includes(id)) {
+        if (IDList.includes(id)) { //checks for ID
             $('#div1').slideUp(0);
             $('#div2').addClass('animX');
         } else {
@@ -75,17 +78,17 @@ function totalLoop() { //main loop functions recursive
         $('#div2').removeClass('animX');
     }, 1);
 
-    setTimeout(function() {
+    setTimeout(function() { //Runs At T+11 Sec
         i++;
         console.log(i);
         $('#div1').slideUp(1);
         $('#div2').addClass('animX');
     }, 11 * 1000);
 
-    setTimeout(function() {
+    setTimeout(function() { //Runs At T+21 Sec
         i++;
         console.log(i);
-        if (IDList.includes(id)) {
+        if (IDList.includes(id)) { //checks for id
             $('#div1').slideUp(0);
             $('#div2').addClass('animX');
         } else {
@@ -95,13 +98,15 @@ function totalLoop() { //main loop functions recursive
         $('#div2').removeClass('animX');
     }, 21 * 1000);
 
-    setTimeout(function() {
+    setTimeout(function() { //Runs At T+25 Sec
         console.log(IDList);
         if (IDList.includes(id)) {
             console.log('ID is Here!');
         }
         totalLoop();
     }, 25 * 1000)
+
+    //T+25 Sec
 }
 
 
