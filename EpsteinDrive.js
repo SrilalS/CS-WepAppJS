@@ -2,6 +2,7 @@ var Payload;
 var Jsn;
 var IDList = [];
 var i = 0;
+var id = 0;
 
 var Pname = document.querySelector("#pname");
 var cslvl = document.querySelector("#cslvl");
@@ -61,12 +62,11 @@ function totalLoop() {
         $('#div1').slideDown(0);
         $('#div1').addClass('animX');
         $('#div2').removeClass('animX');
-    }, 1 * 1000);
+    }, 1);
 
     setTimeout(function() {
         i++;
         console.log(i);
-        IDList.push(i);
         $('#div1').slideUp(1);
         $('#div2').addClass('animX');
     }, 11 * 1000);
@@ -74,7 +74,6 @@ function totalLoop() {
     setTimeout(function() {
         i++;
         console.log(i);
-        IDList.push(i);
         $('#div1').show();
         $('#div1').addClass('animX');
         $('#div2').removeClass('animX');
@@ -82,7 +81,7 @@ function totalLoop() {
 
     setTimeout(function() {
         console.log(IDList);
-        if (IDList.includes(12) == true) {
+        if (IDList.includes(id) == true) {
             console.log('ID is Here!');
         }
         totalLoop();
