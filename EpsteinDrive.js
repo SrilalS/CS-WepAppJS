@@ -7,12 +7,13 @@ var id = 0;
 var Pname = document.querySelector("#pname");
 var cslvl = document.querySelector("#cslvl");
 var img = document.querySelector("#img");
-var requestOptions = {
+
+var requestOptions = { //set request oprions for fetcher
     method: 'GET',
     redirect: 'follow'
 };
 
-function fetcher() {
+function fetcher() { //this one will get the JSON data
     fetch("https://api.splashthat.com/events/457584143/guestlist?page=1&limit=1&status%5B%5D=checkin_yes&sort=checked_in+ASC&viewGroups%5B%5D=contactTags&viewGroups%5B%5D=contactLists&viewGroups%5B%5D=bounceInfo&viewGroups%5B%5D=groupContactAnswer&viewGroups%5B%5D=groupContactEventList&viewGroups%5B%5D=contactList&access_token=Y2I0OTJjYjdkOWVhMmJhNTUyOWI0OWU5Nzk3ZmEzZTdkZGNkNzk4NTFhZTRkYzY2ZWI2YjdlNGQxZWM1NWRlZg", requestOptions)
         .then(response => response.text())
         .then(result => Payload = result)
@@ -24,7 +25,7 @@ function fetcher() {
 
 
 
-function DataOps() {
+function DataOps() { //this is the one who fills data.
     console.log(Jsn.data.guests[0].contact.id);
     for (let index = 0; index < 5; index++) {
         var idcheck = Jsn.data.guests[0].answers[index].question_id;
