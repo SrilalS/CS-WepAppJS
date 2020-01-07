@@ -126,11 +126,11 @@ function totalLoopALT() { //main loop functions recursive
     $('#div2').addClass('animX');
 
 
-    setTimeout(function() { //Runs At T+2 Sec
+    setTimeout(function() { //Runs At T+1 Sec
         DataOps();
     }, 1 * 1000);
 
-    setTimeout(function() { //Runs At T+10 Sec
+    setTimeout(function() { //Runs At T+5 Sec
         if (IDList.includes(id)) {
             console.log('ID is Here!');
             txtpoint = ' ';
@@ -147,7 +147,7 @@ function totalLoopALT() { //main loop functions recursive
 
 
 
-    setTimeout(function() { //Runs At T+20 Sec
+    setTimeout(function() { //Runs At T+15 Sec
 
         console.log(i + ' : Splash');
 
@@ -161,13 +161,13 @@ function totalLoopALT() { //main loop functions recursive
 
     }, 15 * 1000);
 
-    setTimeout(function() { //Runs At T+25 Sec
+    setTimeout(function() { //Runs At T+18 Sec
         console.log(IDList);
         console.log('End of Loop :' + i);
         totalLoopALT();
     }, 18 * 1000)
 
-    //T+25 Sec
+    //T+18 Sec
 }
 
 totalLoopALT();
