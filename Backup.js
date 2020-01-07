@@ -14,7 +14,7 @@ var requestOptions = { //set request oprions for fetcher
 };
 
 function fetcher() { //this one will get the JSON data
-    fetch("https://api.splashthat.com/events/457584143/guestlist?page=1&limit=1&status%5B%5D=checkin_yes&sort=modified+DESC&viewGroups%5B%5D=contactTags&viewGroups%5B%5D=contactLists&viewGroups%5B%5D=bounceInfo&viewGroups%5B%5D=groupContactAnswer&viewGroups%5B%5D=groupContactEventList&viewGroups%5B%5D=contactList&access_token=ZDRmM2ZlMTc4NWM0ZDg3NDE0ZTlhYmVlNTM1NDQ3MTkxYzIwN2I0MzU0OTFmMWY4OWU3MDg1OTNhMzFmOGMwNw", requestOptions)
+    fetch("https://api.splashthat.com/events/457584143/guestlist?page=1&limit=1&status%5B%5D=checkin_yes&sort=groupContact.id+ASC&viewGroups%5B%5D=contactTags&viewGroups%5B%5D=contactLists&viewGroups%5B%5D=bounceInfo&viewGroups%5B%5D=groupContactAnswer&viewGroups%5B%5D=groupContactEventList&viewGroups%5B%5D=contactList&access_token=ZDRmM2ZlMTc4NWM0ZDg3NDE0ZTlhYmVlNTM1NDQ3MTkxYzIwN2I0MzU0OTFmMWY4OWU3MDg1OTNhMzFmOGMwNw", requestOptions)
         .then(response => response.text())
         .then(result => Payload = result)
         .then(result => Jsn = JSON.parse(Payload))
@@ -47,66 +47,6 @@ function DataOps() { //this is the one who fills data.
     console.log('Splashthat ID: ' + id);
 }
 
-function totalLoopALT() { //main loop functions recursive
-    //
-    //NOTE : DO NOT BREAK THE TIME SYNC OR THIS WILL GO NUTS
-    //
-
-    //T-0
-    console.log(IDList);
-    fetcher();
-    i++;
-
-
-    //Runs At T+0 Sec
-
-
-    console.log(i + ' : Splash');
-
-    $('#div1').slideUp(0);
-    $('#div1').removeClass('animX');
-    $('#div2').addClass('animX');
-
-
-    setTimeout(function() { //Runs At T+2 Sec
-        DataOps();
-    }, 2 * 1000);
-
-    setTimeout(function() { //Runs At T+10 Sec
-
-        console.log(i + ' : Profile');
-        $('#div1').slideDown(1);
-        $('#div1').addClass('animX');
-        $('#div2').removeClass('animX');
-    }, 10 * 1000);
-
-
-
-    setTimeout(function() { //Runs At T+20 Sec
-
-        console.log(i + ' : Splash');
-
-        $('#div1').slideUp(0);
-        $('#div2').removeClass('animX');
-        $('#div2').addClass('animX');
-    }, 20 * 1000);
-
-    setTimeout(function() { //Runs At T+25 Sec
-        console.log(IDList);
-        if (IDList.includes(id)) {
-            console.log('ID is Here!');
-        }
-        totalLoopALT();
-    }, 25 * 1000)
-
-    //T+25 Sec
-}
-
-totalLoopALT();
-
-
-//ALT
-
 function totalLoop() { //main loop functions recursive
     //
     //NOTE : DO NOT BREAK THE TIME SYNC OR THIS WILL GO NUTS
@@ -115,42 +55,47 @@ function totalLoop() { //main loop functions recursive
     //T-0
     console.log(IDList);
     fetcher();
-    i++;
-
-
-    setTimeout(function() { //Runs At T+1 Sec
-
-
-        console.log(i + ' : Profile');
-
-        $('#div1').slideDown(0);
-        $('#div1').addClass('animX');
-        $('#div2').removeClass('animX');
-    }, 1 * 250);
-
-    setTimeout(function() { //Runs At T+11 Sec
-
-        console.log(i + ' : Splash');
-        $('#div1').slideUp(1);
-        $('#div2').addClass('animX');
-    }, 11 * 1000);
 
     setTimeout(function() { //Runs At T+12 Sec
         DataOps();
     }, 12 * 1000);
 
-    setTimeout(function() { //Runs At T+21 Sec
+    setTimeout(function() { //Runs At T+1 Sec
+        i++;
 
         console.log(i + ' : Profile');
+        if (IDList.includes(id)) { //checks for ID
+            $('#div1').slideUp(0);
+            $('#div2').addClass('animX');
+        } else {
+            $('#div1').slideDown(0);
+            $('#div1').addClass('animX');
+        };
+        $('#div2').removeClass('animX');
+    }, 1 * 1000);
 
-        $('#div1').slideDown(0);
-        $('#div1').addClass('animX');
+    setTimeout(function() { //Runs At T+11 Sec
+        i++;
+        console.log(i + ' : Splash');
+        $('#div1').slideUp(1);
+        $('#div2').addClass('animX');
+    }, 11 * 1000);
 
+    setTimeout(function() { //Runs At T+21 Sec
+        i++;
+        console.log(i + ' : Profile');
+        if (IDList.includes(id)) { //checks for id
+            $('#div1').slideUp(0);
+            $('#div2').addClass('animX');
+        } else {
+            $('#div1').slideDown(0);
+            $('#div1').addClass('animX');
+        };
         if (!IDList.includes(id)) {
             IDList.push(id);
         };
         $('#div2').removeClass('animX');
-    }, 21 * 1000);
+    }, 24 * 1000);
 
     setTimeout(function() { //Runs At T+25 Sec
         console.log(IDList);
@@ -165,4 +110,4 @@ function totalLoop() { //main loop functions recursive
 
 
 
-//totalLoop();
+totalLoop();
