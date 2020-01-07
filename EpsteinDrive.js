@@ -1,3 +1,11 @@
+//
+//
+//
+//SRILAL SACHINTHA
+//RASHAN HASARANGA
+//
+//
+
 var Payload;
 var Jsn;
 var IDList = [];
@@ -7,6 +15,7 @@ var id = 0;
 
 
 //txtTOspch
+var txtpoint = ' ';
 var synth = window.speechSynthesis;
 
 
@@ -119,19 +128,22 @@ function totalLoopALT() { //main loop functions recursive
 
     setTimeout(function() { //Runs At T+2 Sec
         DataOps();
-    }, 2 * 1000);
+    }, 1 * 1000);
 
     setTimeout(function() { //Runs At T+10 Sec
         if (IDList.includes(id)) {
             console.log('ID is Here!');
+            txtpoint = ' ';
+
         } else {
             $('#div1').slideDown(1);
             $('#div1').addClass('animX');
             $('#div2').removeClass('animX');
-            textToSpeech(Fname + ' ' + Lname);
+            txtpoint = Fname + ' ' + Lname;
         }
         console.log(i + ' : Profile');
-    }, 10 * 1000);
+        textToSpeech(txtpoint);
+    }, 5 * 1000);
 
 
 
@@ -147,13 +159,13 @@ function totalLoopALT() { //main loop functions recursive
             IDList.push(id);
         };
 
-    }, 20 * 1000);
+    }, 15 * 1000);
 
     setTimeout(function() { //Runs At T+25 Sec
         console.log(IDList);
         console.log('End of Loop :' + i);
         totalLoopALT();
-    }, 25 * 1000)
+    }, 18 * 1000)
 
     //T+25 Sec
 }
