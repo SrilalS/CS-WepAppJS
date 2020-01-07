@@ -4,6 +4,55 @@ var IDList = [];
 var i = 0;
 var id = 0;
 
+
+
+//txtTOspch
+var synth = window.speechSynthesis;
+
+
+if (window.speechSynthesis.getVoices().length == 0) {
+    window.speechSynthesis.addEventListener('voiceschanged', function() {
+        available_voices = window.speechSynthesis.getVoices();
+    });
+} else {
+    available_voices = window.speechSynthesis.getVoices();
+}
+
+function textToSpeech(texttobespoken) {
+    // get all voices that browser offers
+    var available_voices = window.speechSynthesis.getVoices();
+
+    // this will hold an english voice
+    var english_voice = '';
+
+    // find voice by language locale "en-US"
+    // if not then select the first voice
+    for (var i = 0; i < available_voices.length; i++) {
+        if (available_voices[i].lang === 'en-US') {
+            english_voice = available_voices[i + 1];
+            break;
+        }
+    }
+    if (english_voice === '')
+        english_voice = available_voices[1];
+
+    // new SpeechSynthesisUtterance object
+    var utter = new SpeechSynthesisUtterance();
+    utter.rate = 1;
+    utter.pitch = 0.5;
+    utter.text = texttobespoken;
+    utter.voice = english_voice;
+
+    // event after text has been spoken
+    utter.onend = function() {
+        console.log('Speech has finished');
+    }
+
+    // speak
+    window.speechSynthesis.speak(utter);
+}
+//
+
 var Pname = document.querySelector("#pname");
 var cslvl = document.querySelector("#cslvl");
 var img = document.querySelector("#img");
@@ -73,11 +122,15 @@ function totalLoopALT() { //main loop functions recursive
     }, 2 * 1000);
 
     setTimeout(function() { //Runs At T+10 Sec
-
+        if (IDList.includes(id)) {
+            console.log('ID is Here!');
+        } else {
+            $('#div1').slideDown(1);
+            $('#div1').addClass('animX');
+            $('#div2').removeClass('animX');
+            textToSpeech(Fname + ' ' + Lname);
+        }
         console.log(i + ' : Profile');
-        $('#div1').slideDown(1);
-        $('#div1').addClass('animX');
-        $('#div2').removeClass('animX');
     }, 10 * 1000);
 
 
@@ -89,13 +142,16 @@ function totalLoopALT() { //main loop functions recursive
         $('#div1').slideUp(0);
         $('#div2').removeClass('animX');
         $('#div2').addClass('animX');
+
+        if (!IDList.includes(id)) {
+            IDList.push(id);
+        };
+
     }, 20 * 1000);
 
     setTimeout(function() { //Runs At T+25 Sec
         console.log(IDList);
-        if (IDList.includes(id)) {
-            console.log('ID is Here!');
-        }
+        console.log('End of Loop :' + i);
         totalLoopALT();
     }, 25 * 1000)
 
